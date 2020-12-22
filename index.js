@@ -4,8 +4,9 @@ const path = require('path')
 require('dotenv').config()
 const { dbconnection } = require('./db/config')
 const app = express()
+//read and parse the body
 app.use(express.json())
-
+//connect database
 dbconnection()
 
 //app.use('/api/auth', require('./routes/auth'))

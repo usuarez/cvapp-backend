@@ -20,6 +20,7 @@
     updateUser
 } = require('./../controllers/user')
 
+
  const router = Router()
 
  //New user
