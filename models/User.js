@@ -4,7 +4,8 @@ const {Schema, model} = require('mongoose')
     ProfessionSchema = Schema({
         title: {
             type: String,
-            required: true
+            required: true,
+            unique: true
         },
         from: {
             type: Date,
@@ -23,7 +24,9 @@ const {Schema, model} = require('mongoose')
     ExperienceSchema = Schema({
         title: {
             type: String,
-            required: true
+            required: true,
+            unique: true
+
         },
         from: {
             type: Date,
@@ -42,7 +45,8 @@ const {Schema, model} = require('mongoose')
     SkillSchema = Schema({
         title: {
             type: String,
-            required: true
+            required: true,
+            unique: true
         },
         from: {
             type: Date,
@@ -57,7 +61,8 @@ const {Schema, model} = require('mongoose')
     CertificationSchema = Schema({
         title: {
             type: String,
-            required: true
+            required: true,
+            unique: true
         },
         from: {
             type: Date,
@@ -88,13 +93,17 @@ const UserSchema = Schema({
         required: true,
         unique: true
     },
+    password: {
+        type: String
+    },
     phone: {
         type: String,
         required: true
     },
     dni: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     birth: {
         type: String,
@@ -104,10 +113,30 @@ const UserSchema = Schema({
         type: String,
         required: true
     },
+    google: {
+        type: Boolean,
+        default: false
+    },
+    disabled: {
+        type: Boolean,
+        default: false
+    },
+    role:{
+        type: String,
+        default: "USER"
+    },
     profession: [ProfessionSchema],
     experience: [ExperienceSchema],
     skills: [SkillSchema],
-    certifications: [CertificationSchema]
+    certifications: [CertificationSchema]  
 })
+
+//remove the password from the success return
+UserSchema.methods.toJSON = function() {
+    let user = this
+    let userObject = user.toObject()
+    delete userObject.password
+    return userObject
+}
 
 module.exports = model('User', UserSchema)

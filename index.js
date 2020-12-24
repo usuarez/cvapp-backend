@@ -9,7 +9,7 @@ app.use(express.json())
 //connect database
 dbconnection()
 
-//app.use('/api/auth', require('./routes/auth'))
+app.use('/api/auth', require('./routes/auth'))
 //app.use('/api/review', require('./routes/reviews'))
 app.use('/api/user', require('./routes/user'))
 //app.use('/api/survey', require('./routes/surveys'))

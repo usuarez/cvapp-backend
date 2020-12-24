@@ -4,7 +4,11 @@ const dbconnection = async () => {
     try {
         mongoose.connect(
             process.env.DB_CONNECT,
-            {useNewUrlParser: true, useCreateIndex:true, useUnifiedTopology: true}
+            {
+                useNewUrlParser: true, 
+                useCreateIndex:true, 
+                useUnifiedTopology: true
+            }
             )
             console.log('Conexion establecida a cvplusdb')
     } catch (error) {
