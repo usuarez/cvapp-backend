@@ -1,7 +1,6 @@
 const {response} = require('express')
 const User = require('./../models/User')
 const bcrypt = require('bcryptjs')
-const { validationResult } = require('express-validator');
 const { generateJwt } = require('../helpers/jwt');
 
 
@@ -13,7 +12,7 @@ const login = async(req, res = response)=>{
         if(!user) response.status(400).json({ok:false,message:'El usuario no existe'})
         //password match validation
         const validatePassword = bcrypt.compareSync(password, user.password)
-        if(!validatePassword) res.status(400).json({ok:false,message:'Email o password incorrectos'})
+        if(!validatePassword) {return res.status(400).json({ok:false,message:'Email o password incorrectos'})}
         //generating jwtoken
         const token = await generateJwt(user.id, user.name)
         res.status(200).json({
@@ -33,8 +32,8 @@ const login = async(req, res = response)=>{
 }
 
 const renewToken = async(req, res = response)=>{
-    const uid = req.id
-    let user = await User.findById(uid)
+    const {id} = req.body
+    let user = await User.findById(id)
     const token = await generateJwt(user.id, user.name)
     res.json({ok:true, uid: user.id, name: user.name, token})
 }

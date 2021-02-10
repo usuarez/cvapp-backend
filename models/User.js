@@ -93,26 +93,15 @@ const UserSchema = Schema({
         required: true,
         unique: true
     },
-    password: {
+    password: { type: String },
+    phone: { type: String },
+    dni: {
         type: String
     },
-    phone: {
-        type: String,
-        required: true
-    },
-    dni: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    birth: {
-        type: String,
-        required: true
-    },
-    address: {
-        type: String,
-        required: true
-    },
+    img: { type: String },
+    birth: { type: String },
+    address: { type: String },
+    about: { type: String },
     google: {
         type: Boolean,
         default: false
@@ -136,6 +125,10 @@ UserSchema.methods.toJSON = function() {
     let user = this
     let userObject = user.toObject()
     delete userObject.password
+    delete userObject.role
+    delete userObject.google
+    delete userObject.disabled
+    delete userObject.__v
     return userObject
 }
 
