@@ -169,7 +169,7 @@ const deleteUser = async (req, res = response) => {
 
 const downloadPdf = (req, res = response) => {
     const {id} = req.params
-    const file = `./public/resumes/${id}.pdf`; 
+    const file = `./../public/resumes/${id}.pdf`; 
     console.log(file)
     res.download(file, 'myresume.pdf', (err)=>{
         if(err) res.json({err})
