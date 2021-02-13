@@ -5,23 +5,21 @@ const Avatar = require('../helpers/initial-avatars')
 
 const content = (data) => (`
 
-    <header class="fluid-container">
-        <div class="center container">
-            <div class="photo text-center">
-            ${ (data.img) ? `<img src="${data.img}" alt="" />` : '' }
-            ${ (!data.img) ? Avatar(data.name, {width: 120, bg: 'rgb(26, 156, 126)', textColor: '#3c3c3c'}) : '' }
-                
-            </div>
-            <h3 class="text-center">${data.name}</h3>
-            <p class="text-center">${(data.about) ? `${data.about}` : ''}</p>
-            </div>
-            </header>
-            <main class="container">
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-5 hello-side">
             
-            <div class="row">
-            <aside class="side col-xs-offset-2 col-xs-3">
-            <div class="contact">
-                    <h3 class="bold">Contacto</h3>
+                <div class="center container">
+                    <div class="photo text-center">
+                    ${ (!!data.img) ? `<img src="${data.img}" alt="" />` : '' }
+                    ${ (!data.img) ? Avatar(data.name, {width: 120, bg: 'rgb(26, 156, 126)', textColor: '#3c3c3c'}) : '' }
+        
+                    </div>
+                    <h2 class="thin text-center">${data.name}</h2>
+                    
+                </div>
+                <div class="contact">
+                    <h3 class="thin text-center">Contacto</h3>
                     <ul>
                         
                         <li>${data.email}</li>
@@ -32,7 +30,7 @@ const content = (data) => (`
                 </div>
                 <div class="skills">
                     ${ (data.skills.length < 1 ) ? '' :
-                    `<h3 class="bold">Habilidades</h3>
+                    `<h3 class="thin text-center">Habilidades</h3>
                     <div class="skill-list">
                     ${data.skills.map(skill => (
                         `<div class="skill">
@@ -46,8 +44,14 @@ const content = (data) => (`
                     </div>`
                     }
                     </div>
-            </aside>
-            <section class="content col-xs-offset-1 col-xs-5">
+            </div>
+            <div class="col-xs-7 hello-main">
+                <div class="experience main-section">
+                    <h2 class="bold">Sobre mi</h2>
+                    <div class="main-section-item">
+                        <p>${(data.about) ? `${data.about}` : ''}</p>
+                    </div>
+                </div>
                 <div class="experience main-section">
                 ${(data.experience.length < 1 ) ? '' : `
                     <h3 class="bold">Experiencia</h3>
@@ -83,12 +87,10 @@ const content = (data) => (`
                         </div>`
                     )).flat().join('')}
                     `}
-                </div>
-            </section>
+                </div>          
+            </div>
         </div>
-
-    </main>
-    
+    </div>
 
 ` )
 module.exports = content

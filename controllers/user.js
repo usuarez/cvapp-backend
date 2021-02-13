@@ -20,7 +20,7 @@ const newUser = async (req, res = response) => {
     //validate if account exists
     const {email} = req.body
     const isUser = await User.findOne({email})
-    if (isUser) (res.json({ok:false, message: "El email ya está registrado"}))
+    if (isUser) { return res.json({ok:false, message: "El email ya está registrado"})}
 
     
     try {
@@ -129,6 +129,9 @@ const getUserData = async (req, res = response) => {
             })   
     })
 }
+
+
+
 //list the registred users, only admin
 const getUsers = async (req, res = response) => {
     let from = Number(req.query.from) || 0
@@ -165,7 +168,6 @@ const deleteUser = async (req, res = response) => {
 }
 
 const downloadPdf = (req, res = response) => {
-    console.log(req.params)
     const {id} = req.params
     const file = `public/resumes/${id}.pdf`; 
     console.log(file)

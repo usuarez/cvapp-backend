@@ -5,49 +5,16 @@ const Avatar = require('../helpers/initial-avatars')
 
 const content = (data) => (`
 
-    <header class="fluid-container">
-        <div class="center container">
-            <div class="photo text-center">
-            ${ (data.img) ? `<img src="${data.img}" alt="" />` : '' }
-            ${ (!data.img) ? Avatar(data.name, {width: 120, bg: 'rgb(26, 156, 126)', textColor: '#3c3c3c'}) : '' }
-                
-            </div>
-            <h3 class="text-center">${data.name}</h3>
-            <p class="text-center">${(data.about) ? `${data.about}` : ''}</p>
-            </div>
-            </header>
-            <main class="container">
-            
-            <div class="row">
-            <aside class="side col-xs-offset-2 col-xs-3">
-            <div class="contact">
-                    <h3 class="bold">Contacto</h3>
-                    <ul>
-                        
-                        <li>${data.email}</li>
-                        <li>${data.phone}</li>
-                        <li>${data.address}</li>
-                        
-                    </ul>
-                </div>
-                <div class="skills">
-                    ${ (data.skills.length < 1 ) ? '' :
-                    `<h3 class="bold">Habilidades</h3>
-                    <div class="skill-list">
-                    ${data.skills.map(skill => (
-                        `<div class="skill">
-                            <p>${skill.title}</p>
-                            <div class="skill-bar">
-                                <div class="skill-bar-fill ${skill.level}"></div>
-                            </div>
-                        </div>`
-                    )).flat().join('') }
+<div class="container-fluid">
+        <div class="row">
 
-                    </div>`
-                    }
+            <div class="col-xs-7 hello-main">
+                <div class="experience main-section">
+                    <h2 class="bold">Sobre mi</h2>
+                    <div class="main-section-item">
+                        <p>${(data.about) ? `${data.about}` : ''}</p>
                     </div>
-            </aside>
-            <section class="content col-xs-offset-1 col-xs-5">
+                </div>
                 <div class="experience main-section">
                 ${(data.experience.length < 1 ) ? '' : `
                     <h3 class="bold">Experiencia</h3>
@@ -83,12 +50,50 @@ const content = (data) => (`
                         </div>`
                     )).flat().join('')}
                     `}
+                </div>          
+            </div>
+
+            <div class="col-xs-5 hello-side">
+            
+            <div class="center container">
+                <div class="photo text-center">
+                ${ (!!data.img) ? `<img src="${data.img}" alt="" />` : '' }
+                ${ (!data.img) ? Avatar(data.name, {width: 120, bg: 'rgb(26, 156, 126)', textColor: '#3c3c3c'}) : '' }
+    
                 </div>
-            </section>
+                <h2 class=" thin text-center">${data.name}</h2>
+                
+            </div>
+            <div class="contact">
+                <h3 class="bold text-center">Contacto</h3>
+                <ul>
+                    
+                    <li>${data.email}</li>
+                    <li>${data.phone}</li>
+                    <li>${data.address}</li>
+                    
+                </ul>
+            </div>
+            <div class="skills">
+                ${ (data.skills.length < 1 ) ? '' :
+                `<h3 class="thin text-center">Habilidades</h3>
+                <div class="skill-list">
+                ${data.skills.map(skill => (
+                    `<div class="skill">
+                        <p>${skill.title}</p>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill ${skill.level}"></div>
+                        </div>
+                    </div>`
+                )).flat().join('') }
+
+                </div>`
+                }
+                </div>
         </div>
 
-    </main>
-    
+        </div>
+    </div>
 
 ` )
 module.exports = content

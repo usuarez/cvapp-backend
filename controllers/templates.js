@@ -10,9 +10,6 @@ const generatePdf = (req, res = response) => {
         if(err) { return err }
         let userData = user
         pdfData.userData = userData
-    console.log(req.body)
-    console.log(user)
-    
     const content = require(`../templates/${pdfData.templateName}`)
     //content(userDataObject)
     const htmlHeadStructure = `
@@ -35,11 +32,11 @@ const generatePdf = (req, res = response) => {
         ${content(userData)}
         ${htmlEndStructure}
     `
-    
+
     pdf.create(templ, {
         "header": {"height": "10mm"}, 
         "footer": {"height": "16mm"}
-        }).toFile(`./public/resumes/${uid}.pdf`, (err, res) => {
+        }).toFile(`./public/resumes/${uid}-${pdfData.templateName}.pdf`, (err, res) => {
         if(err) return res.status(400).json({ok:false, err})
         })
         return res.json({ok:true, message: 'pdf creado con exito'})

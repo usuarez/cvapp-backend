@@ -6,10 +6,11 @@ const Avatar = require('../helpers/initial-avatars')
 const content = (data) => (`
     <header class="fluid-container">
         <div class="center container">
-            <div class="photo text-center">
-            ${(data.hasOwnProperty('img') ) ? `<img src="${data.img || ''}" alt="">` : Avatar('rhaismar', {width: 120, bg: 'rgb(26, 156, 126)', textColor: '#3c3c3c'}) }
-                
-            </div>
+        <div class="photo text-center">
+        ${ (data.img) ? `<img src="${data.img}" alt="" />` : '' }
+        ${ (!data.img) ? Avatar(data.name, {width: 120, bg: 'rgb(26, 156, 126)', textColor: '#3c3c3c'}) : '' }
+            
+        </div>
             <h3 class="text-center">${data.name}</h3>
             <p class="text-center">${(data.hasOwnProperty('about')) ? data.about: ''}</p>
 

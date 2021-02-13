@@ -49,7 +49,7 @@ small, .text_small {font-size: 0.8rem;}
     overflow: hidden;
 }
 .simple header .photo img {
-  max-height: 156px;
+  max-height: 126px;
 }
 .main {
   margin: 0 auto;
@@ -119,4 +119,27 @@ main {margin-top: 24px;}
 
 
 
+/*the hello template*/
+.hello-side,
+.hello-main {
+  height: 29.7cm;
+  padding: 5mm 45px 16mm;
+}
 
+
+.hello-side {
+  background-color: rgb(24, 98, 167);
+  color: #fff;
+}
+
+.hello-side .skill-bar {
+  background-color: rgb(98, 162, 221);
+  height: 9px;
+}
+.hello-side .skill-bar-fill {
+  background-color: rgb(255, 255, 255);
+  height: 9px;
+}
+.hello-side .photo {margin: 0 auto 12px;}
+.hello-side .photo img{ border-radius: 50%; height: 126px;}
+.hello-side .contact {margin-top: 12px;}

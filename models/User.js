@@ -5,7 +5,6 @@ const {Schema, model} = require('mongoose')
         title: {
             type: String,
             required: true,
-            unique: true
         },
         from: {
             type: Date,
@@ -25,7 +24,6 @@ const {Schema, model} = require('mongoose')
         title: {
             type: String,
             required: true,
-            unique: true
 
         },
         from: {
@@ -46,7 +44,6 @@ const {Schema, model} = require('mongoose')
         title: {
             type: String,
             required: true,
-            unique: true
         },
         from: {
             type: Date,
@@ -61,8 +58,7 @@ const {Schema, model} = require('mongoose')
     CertificationSchema = Schema({
         title: {
             type: String,
-            required: true,
-            unique: true
+            required: true
         },
         from: {
             type: Date,
