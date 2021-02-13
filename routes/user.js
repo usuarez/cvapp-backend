@@ -49,6 +49,6 @@ router.post('/my-data', [verifyToken], getUserData)
 
  router.get('/templates', listTemplates)
 
- router.get('/download/:id', downloadPdf)
+ router.get('/download/:id/:template', downloadPdf)
 
  module.exports = router
