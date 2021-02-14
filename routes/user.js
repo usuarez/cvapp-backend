@@ -22,9 +22,11 @@
 const {generatePdf, listTemplates} = require('./../controllers/templates')
 const { body } = require('express-validator')
 const { verifyToken } = require('../middlewares/auth')
-
- const router = Router()
+const cors = require('cors')
+const router = Router()
  
+router.use(cors())
+
  //New user
  router.post('/',[
     //check valid email
@@ -49,6 +51,11 @@ router.post('/my-data', [verifyToken], getUserData)
 
  router.get('/templates', listTemplates)
 
- router.get('/download/:id/:template', [verifyToken], downloadPdf)
+ router.get('/download/:id/:template', cors({
+   "origin": "*",
+   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+   "preflightContinue": false,
+   "optionsSuccessStatus": 204
+ }), downloadPdf)
 
  module.exports = router
