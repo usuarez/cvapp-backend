@@ -16,8 +16,8 @@ const generatePdf = (req, res = response) => {
     //content(userDataObject)
     const htmlHeadStructure = `
             <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href="https://cvplus.herokuapp.com//css/bootstrap.css">
-            <link rel="stylesheet" href="https://cvplus.herokuapp.com//css/global.css"><title>Template</title>
+            <link rel="stylesheet" href="https://cvplus.herokuapp.com/css/bootstrap.css">
+            <link rel="stylesheet" href="https://cvplus.herokuapp.com/css/global.css"><title>Template</title>
             <style>
                 .accent-bg { background-color: ${pdfData.accentColor || 'white'};}
                 .accent-text { color: ${pdfData.accentColor || 'white'};}
