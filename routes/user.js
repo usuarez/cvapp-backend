@@ -19,7 +19,7 @@
     deleteUserData,
     downloadPdf
 } = require('./../controllers/user')
-const {generatePdf, listTemplates} = require('./../controllers/templates')
+const {generatePdf, listTemplates, getBase64Pdf} = require('./../controllers/templates')
 const { body } = require('express-validator')
 const { verifyToken } = require('../middlewares/auth')
 const cors = require('cors')
@@ -57,5 +57,7 @@ router.post('/my-data', [verifyToken], getUserData)
    "preflightContinue": false,
    "optionsSuccessStatus": 204
  }), downloadPdf)
+
+ router.get('/preview/:id/:template', getBase64Pdf)
 
  module.exports = router

@@ -2,6 +2,8 @@ const {response} = require('express')
 const fs = require('fs');
 const User = require('./../models/User')
 const pdf = require('html-pdf')
+const path = require('path') 
+const pdf2base64 = require('pdf-to-base64');
 
 //generate pdf in the server
 const generatePdf = (req, res = response) => {
@@ -55,4 +57,14 @@ const listTemplates = (req, res = response) => {
     });
 }
 
-module.exports = {generatePdf, listTemplates}
+
+
+const getBase64Pdf = (req, res = response) => {
+    const {id, template} = req.params
+    const file = path.resolve(`./public/resumes/${id}-${template}.pdf`)
+    pdf2base64(file)
+    .then( (response) => { res.status(200).json({ok: true, pdf: response}) } )
+    .catch( (error) => { res.status(400).json({ok: false, error}) } )
+}
+
+module.exports = {generatePdf, listTemplates, getBase64Pdf}

@@ -177,6 +177,7 @@ const downloadPdf = (req, res = response) => {
 
 }
 
+
 module.exports = {
     newUser,
     getUsers,
