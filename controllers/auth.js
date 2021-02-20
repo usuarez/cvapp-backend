@@ -15,18 +15,11 @@ const login = async(req, res = response)=>{
         if(!validatePassword) {return res.status(400).json({ok:false,message:'Email o password incorrectos'})}
         //generating jwtoken
         const token = await generateJwt(user.id, user.name)
-        res.status(200).json({
-            ok:true,
-            user,
-            token
-        })
+        res.status(200).json({ ok:true, user, token })
     } catch (error) {
         //error handling
         console.log(error)
-        res.status(500).json({
-            ok:false,
-            msg: 'Error inesperado, contacte al adm del sistema'
-        })
+        res.status(500).json({ ok:false, msg: 'Error inesperado, contacte al adm del sistema' })
     }
 }
 
