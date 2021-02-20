@@ -36,7 +36,17 @@ const generatePdf = (req, res = response) => {
         ${content(userData)}
         ${htmlEndStructure}
     `
-
+    fs.readdir('./public/resumes', (err,resumes)=>{
+    console.log(resumes)
+    resumes.forEach(resume=>{
+        try {
+            fs.unlinkSync(resume)
+            console.log('Resume storage cleared')
+          } catch(err) {
+            console.error('Something wrong happened removing the file', err)
+          }
+    })
+    })
     pdf.create(templ, {
         "header": {"height": "10mm"}, 
         "footer": {"height": "16mm"}
@@ -64,8 +74,7 @@ const listTemplates = (req, res = response) => {
 const getBase64Pdf = (req, res = response) => {
     const {id, template} = req.params
     const file = path.resolve(__dirname+`/../public/resumes/${id}-${template}.pdf`)
-    fs.readdir('./public/resumes', (err,resumes)=>
-    console.log(resumes))
+    
     console.log(file)
     pdf2base64(file)
     .then( (response) => { res.status(200).json({ok: true, pdf: response}) } )
