@@ -41,7 +41,7 @@ const generatePdf = (req, res = response) => {
         }).toFile(`./public/resumes/${uid}-${pdfData.templateName}.pdf`, (err, res) => {
         if(err) return res.status(400).json({ok:false, err})
         })
-        return res.json({ok:true, message: 'pdf creado con exito'})
+        return res.json({ok:true, message: 'pdf creado con exito', uri: path.resolve(`./public/resumes/${uid}-${pdfData.templateName}.pdf`)})
 
     })
 }
@@ -61,7 +61,7 @@ const listTemplates = (req, res = response) => {
 
 const getBase64Pdf = (req, res = response) => {
     const {id, template} = req.params
-    const file = path.resolve(`./../resumes/${id}-${template}.pdf`)
+    const file = path.resolve(`./public/resumes/${id}-${template}.pdf`)
     console.log(file)
     pdf2base64(file)
     .then( (response) => { res.status(200).json({ok: true, pdf: response}) } )
