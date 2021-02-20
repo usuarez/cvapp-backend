@@ -36,19 +36,7 @@ const generatePdf = (req, res = response) => {
         ${content(userData)}
         ${htmlEndStructure}
     `
-    fs.readdir('./public/resumes', (err,resumes)=>{
-    console.log(resumes)
-    resumes.forEach(resume=>{
-        if(resume.includes('.pdf')) {
-            try {
-                fs.unlinkSync(`./public/resumes/${resume}`)
-                console.log('Resume storage cleared')
-              } catch(err) {
-                console.error('Something wrong happened removing the file', err)
-              }
-        }
-    })
-    })
+    
     pdf.create(templ, {
         "header": {"height": "10mm"}, 
         "footer": {"height": "16mm"}

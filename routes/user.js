@@ -48,18 +48,8 @@ router.post('/my-data', [verifyToken], getUserData)
  router.get('/templates', listTemplates)
 
  //use cors middleware to fix rejection download
- router.get('/download/:id/:template', cors({
-   "origin": "*",
-   "methods": "GET",
-   "preflightContinue": false,
-   "optionsSuccessStatus": 204
- }), downloadPdf)
+ router.get('/download/:id/:template',  downloadPdf)
 
- router.get('/preview/:id/:template', cors({
-   "origin": "*",
-   "methods": "GET",
-   "preflightContinue": false,
-   "optionsSuccessStatus": 204
- }), getBase64Pdf)
+ router.get('/preview/:id/:template', getBase64Pdf)
 
  module.exports = router
