@@ -171,7 +171,7 @@ const downloadPdf = (req, res = response) => {
     const {id, template} = req.params
     const file = `./../resumes/${id}-${template}.pdf`; 
     console.log(file)
-    res.download(path.resolve(file), 'myresume.pdf', (err)=>{
+    res.download(file, 'myresume.pdf', (err)=>{
         if(err) res.json({err})
     })
 
