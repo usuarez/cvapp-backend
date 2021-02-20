@@ -24,6 +24,7 @@ const login = async(req, res = response)=>{
 }
 
 const renewToken = async(req, res = response)=>{
+    console.log(req.body)
     const {id} = req.body
     let user = await User.findById(id)
     const token = await generateJwt(user.id, user.name)

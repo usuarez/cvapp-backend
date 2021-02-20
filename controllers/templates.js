@@ -15,9 +15,11 @@ const generatePdf = (req, res = response) => {
     const content = require(`../templates/${pdfData.templateName}`)
     //content(userDataObject)
     const htmlHeadStructure = `
-            <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <!DOCTYPE html>
+            <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="https://cvplus.herokuapp.com/css/bootstrap.css">
-            <link rel="stylesheet" href="https://cvplus.herokuapp.com/css/global.css"><title>Template</title>
+            <link rel="stylesheet" href="https://cvplus.herokuapp.com/css/global.css">
+            <title>Template</title>
             <style>
                 .accent-bg { background-color: ${pdfData.accentColor || 'white'};}
                 .accent-text { color: ${pdfData.accentColor || 'white'};}
@@ -61,7 +63,7 @@ const listTemplates = (req, res = response) => {
 
 const getBase64Pdf = (req, res = response) => {
     const {id, template} = req.params
-    const file = path.resolve(`./public/resumes/${id}-${template}.pdf`)
+    const file = path.resolve(__dirname+`/../public/resumes/${id}-${template}.pdf`)
     fs.readdir('./public/resumes', (err,resumes)=>
     console.log(resumes))
     console.log(file)
