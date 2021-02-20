@@ -24,7 +24,7 @@ app.use(function(req, res, next) {
     next();
 });
 //Routes
-app.use('/api/user', require('./routes/user'))
-app.use('/api/auth', require('./routes/auth'))
+app.use('/api/user', cors(), require('./routes/user'))
+app.use('/api/auth', cors(), require('./routes/auth'))
 
 app.listen(process.env.PORT, ()=>{console.log(`API corriendo en el puerto ${process.env.PORT}`)})
