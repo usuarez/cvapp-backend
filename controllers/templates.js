@@ -79,7 +79,9 @@ const getBase64Pdf = (req, res = response) => {
     
     console.log(file)
     pdf2base64(file)
-    .then( (response) => { res.status(200).json({ok: true, pdf: response}) } )
+    .then( (response) => {
+        console.log(response)
+        res.status(200).json({ok: true, pdf: {response}}) } )
     .catch( (error) => { res.status(400).json({ok: false, error}) } )
 }
 
