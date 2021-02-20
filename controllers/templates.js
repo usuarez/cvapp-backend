@@ -75,7 +75,7 @@ const listTemplates = (req, res = response) => {
 
 const getBase64Pdf = (req, res = response) => {
     const {id, template} = req.params
-    const file = path.resolve(__dirname+`/../public/resumes/${id}-${template}.pdf`)
+    const file = path.resolve(`./../public/resumes/${id}-${template}.pdf`)
     
     console.log('You need to read this ',file)
     pdf2base64(file)
