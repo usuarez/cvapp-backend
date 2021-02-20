@@ -77,7 +77,7 @@ const getBase64Pdf = (req, res = response) => {
     const {id, template} = req.params
     const file = path.resolve(`./../public/resumes/${id}-${template}.pdf`)
     
-    console.log('You need to read this ',file)
+    console.log('You need to read this ',pdf2base64(file))
     pdf2base64(file)
     .then( (response) => {
         console.log(response)
