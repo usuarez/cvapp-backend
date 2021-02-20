@@ -41,7 +41,7 @@ const generatePdf = (req, res = response) => {
     resumes.forEach(resume=>{
         if(resume.includes('.pdf')) {
             try {
-                fs.unlinkSync(resume)
+                fs.unlinkSync(`./public/resumes/${resume}`)
                 console.log('Resume storage cleared')
               } catch(err) {
                 console.error('Something wrong happened removing the file', err)
