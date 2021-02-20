@@ -39,12 +39,14 @@ const generatePdf = (req, res = response) => {
     fs.readdir('./public/resumes', (err,resumes)=>{
     console.log(resumes)
     resumes.forEach(resume=>{
-        try {
-            fs.unlinkSync(resume)
-            console.log('Resume storage cleared')
-          } catch(err) {
-            console.error('Something wrong happened removing the file', err)
-          }
+        if(resume.includes('.pdf')) {
+            try {
+                fs.unlinkSync(resume)
+                console.log('Resume storage cleared')
+              } catch(err) {
+                console.error('Something wrong happened removing the file', err)
+              }
+        }
     })
     })
     pdf.create(templ, {
