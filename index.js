@@ -12,6 +12,7 @@ dbconnection()
 
 //enable /public folder
 app.use(express.static( path.resolve( __dirname, './public') ) )
+app.use(express.static( path.resolve( __dirname, './public/resumes') ) )
 
 //Express CORS
 app.use(cors())
